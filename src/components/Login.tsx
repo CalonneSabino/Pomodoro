@@ -8,7 +8,6 @@ interface LoginProps {
 
 export default function Login({ onLogin }: LoginProps) {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -26,6 +25,8 @@ export default function Login({ onLogin }: LoginProps) {
           </div>
             <img
                 src={logo}
+                className="mx-auto"
+                style={{width: '72px', height: '72px'}}
             />
           <h2 className="text-3xl font-bold text-purple-800">
             Pomodoro Onne
