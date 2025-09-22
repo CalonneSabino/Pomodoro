@@ -11,10 +11,10 @@ interface HomeProps {
 }
 
 const defaultActivities: Activity[] = [
-  { id: '1', name: 'Trabalho', duration: 25, color: '#ef4444', isDefault: true },
+  { id: '1', name: 'Trabalho', duration: 60, color: '#ef4444', isDefault: true },
   { id: '2', name: 'Estudo', duration: 30, color: '#3b82f6', isDefault: true },
   { id: '3', name: 'Leitura', duration: 20, color: '#22c55e', isDefault: true },
-  { id: '4', name: 'Exercício', duration: 15, color: '#f97316', isDefault: true }
+  { id: '4', name: 'Exercício', duration: 30, color: '#f97316', isDefault: true }
 ];
 
 export default function Home({ user, onLogout }: HomeProps) {
@@ -92,16 +92,16 @@ export default function Home({ user, onLogout }: HomeProps) {
           </MaterialButton>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {activities.map(activity => (
-            <ActivityCard
-              key={activity.id}
-              activity={activity}
-              onStart={handleStartActivity}
-              onDelete={!activity.isDefault ? handleDeleteActivity : undefined}
-            />
-          ))}
-        </div>
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {activities.map(activity => (
+                  <ActivityCard
+                      key={activity.id}
+                      activity={activity}
+                      onStart={handleStartActivity}
+                      onDelete={!activity.isDefault ? handleDeleteActivity : undefined}
+                  />
+              ))}
+          </div>
       </main>
 
       <AddActivityModal

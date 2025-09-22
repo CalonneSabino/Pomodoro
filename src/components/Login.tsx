@@ -29,9 +29,9 @@ export default function Login({ onLogin }: LoginProps) {
                 style={{width: '72px', height: '72px'}}
             />
           <h2 className="text-3xl font-bold text-purple-800">
-            Pomodoro Onne
+             Onne Time
           </h2>
-          <p className="text-purple-600 mt-2">Organize seu tempo</p>
+          <p className="text-purple-600 mt-2">Tecnica pomodoro</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
