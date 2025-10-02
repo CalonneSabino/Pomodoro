@@ -31,7 +31,7 @@ export default function Login({ onLogin }: LoginProps) {
           <h2 className="text-3xl font-bold text-purple-800">
              Onne Time
           </h2>
-          <p className="text-purple-600 mt-2">Tecnica pomodoro</p>
+          <p className="text-purple-600 mt-2">Tecnica pomodoro. Aprimorando seu foco</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
