@@ -21,31 +21,17 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Login to Amazon ECR
+        id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
-
-      - name: Debug AWS/ECR info
-        run: |
-          echo "== Secrets =="
-          echo "AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}"
-          echo "AWS_REGION: ${{ secrets.AWS_REGION }}"
-          echo "ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}"
-          echo "== Caller Identity =="
-          aws sts get-caller-identity
-          echo "== Check Repository =="
-          aws ecr describe-repositories --repository-names ${{ secrets.ECR_REPOSITORY }}
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.ECR_REPOSITORY }}:latest .
+          docker build -t pomodoro-app  .
 
       - name: Tag Docker image for ECR
         run: |
-          IMAGE_URI="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest"
-          echo "Tagging image as $IMAGE_URI"
-          docker tag ${{ secrets.ECR_REPOSITORY }}:latest $IMAGE_URI
+          docker tag ${{ secrets.ECR_REPOSITORY }}:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
 
       - name: Push Docker image to ECR
         run: |
-          IMAGE_URI="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest"
-          echo "Pushing image $IMAGE_URI"
-          docker push $IMAGE_URI
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
